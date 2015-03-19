@@ -50,7 +50,7 @@
     var subs = ["BRUNCH", "CATS", "JUICE", "DADA", "SATAN", "PRUFROCK"];
     return function(oldName) {
       var newName = subs[Math.floor(Math.random()*subs.length)];
-      post("http://localhost:3000/swaps", {"old": oldName, "new": newName});
+      post("__HOST__/swap", {"old": oldName, "new": newName});
       return newName;
     };
   })();
