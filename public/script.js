@@ -1,4 +1,18 @@
 (function() {
+  var post = function (url, body) {
+  
+    var req = new XMLHttpRequest();
+
+    req.onreadystatechange = function () {
+      if (req.readyState == 4) console.log("request finished:", req.status, req.responseText);
+    };
+
+    req.open("POST", url, true);
+    req.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+    req.setRequestHeader('Content-Type', 'application/json');
+    req.send(JSON.stringify(body));
+  };
+
   var targets = [
     {
       name: "Mixpanel",
@@ -9,12 +23,13 @@
     {
       name: "Google Analytics (analytics.js)",
       global: "ga",
-      urlMatch: "www.google-analytics.com",
+      urlMatch: "google-analytics.com/analytics.js",
       handler: swapNewGoogleAnalytics
     },
     {
       name: "Google Analytics (ga.js)",
       global: "_gaq",
+      urlMatch: "google-analytics.com/ga.js",
       handler: swapOldGoogleAnalytics
     }
   ];
@@ -23,30 +38,19 @@
   scripts = Array.prototype.slice.call(scripts);
   
   targets.forEach(function(target) {
-    // Immediately run handler script if global is found.
-    if (window[target.global]) {
-      console.log("synchronously found", target.name);
-      return target.handler();
-    // If the script instead loads asynchronously, we can instead
-    // wait for it to load before running our handler.
-    // TODO: Do we need this at all?
-    } else if (target.urlMatch) {
-      console.log("asynchronously found", target.name);
-      var script = scripts.filter(function(s) {
-        return s.src.indexOf(target.urlMatch) !== -1;
-      }).pop();
-      if (!script) return;
-      script.onload = target.handler;
-    }
-
+    var script = scripts.filter(function(s) {
+      return s.src.indexOf(target.urlMatch) !== -1;
+    }).pop();
+    if (!script) return;
+    console.log("asynchronously found", target.name);
+    script.onload = target.handler;
   });
 
   var swap = (function() {
     var subs = ["BRUNCH", "CATS", "JUICE", "DADA", "SATAN", "PRUFROCK"];
     return function(oldName) {
-      var newName = newNames[Math.floor(Math.random()*newNames.length)];
-      // TODO: replace with handler for visualizer.
-      console.log("Swapping", newName, "for", oldName);
+      var newName = subs[Math.floor(Math.random()*subs.length)];
+      post("http://localhost:3000/swaps", {"old": oldName, "new": newName});
       return newName;
     };
   })();
