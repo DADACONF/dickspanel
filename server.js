@@ -1,12 +1,12 @@
 var express = require("express");
 var Firebase = require("firebase");
-var serveStatic = require('serve-static');
 var cors = require("cors");
 var bodyParser = require("body/json");
 
 var app = express();
-app.use(serveStatic('public'));
 app.use(cors());
+
+app.use("/", express.static("public"));
 
 var fb = new Firebase("https://disruptbrunch.firebaseio.com/swaps");
 app.post("/swap", function(req, res) {
@@ -20,6 +20,6 @@ app.post("/swap", function(req, res) {
   });
 });
 
-var server = app.listen(function() {
+var server = app.listen(3000, function() {
   console.log("server listening on port 3000");
 });
