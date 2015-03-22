@@ -47,7 +47,7 @@
   });
 
   var swap = (function() {
-    var subs = ["BRUNCH", "CATS", "JUICE", "DADA", "SATAN", "PRUFROCK"];
+    var subs = ["DICK", "PRICK", "PECKER", "JIMMY", "WEINER", "COCK", "WEEWEE", ""];
     return function(oldName) {
       var newName = subs[Math.floor(Math.random()*subs.length)];
       post("__HOST__/swap", {"old": oldName, "new": newName});

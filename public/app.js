@@ -7,7 +7,7 @@
 
   var WIDTH = 800;
   var HEIGHT = 600;
-  var DURATION = 1000;
+  var DURATION = 3000;
   var container = $(".container");
   container.width(WIDTH).height(HEIGHT);
 

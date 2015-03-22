@@ -9,7 +9,7 @@ var fb         = new Firebase("https://disruptbrunch.firebaseio.com/swaps");
 var port = process.env.PORT || 3000;
 
 var host = process.env.NODE_ENV === "production" ?
-  "http://disruptbrunch.herokuapp.com" :
+  "http://dickspanel.herokuapp.com" :
   "http://localhost:" + port;
 var script = fs.readFileSync(__dirname + "/public/script.js")
   .toString()
