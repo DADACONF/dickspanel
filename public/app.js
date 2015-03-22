@@ -12,7 +12,7 @@
   container.width(WIDTH).height(HEIGHT);
 
   function getPos(max) {
-    return 50 + Math.random()*(max - 100);
+    return 50 + Math.random()*(max - 150);
   }
 
   function renderSwap(s) {
