@@ -11,6 +11,10 @@
   var container = $(".container");
   container.width(WIDTH).height(HEIGHT);
 
+  function getPos(max) {
+    return 50 + Math.random()*(max - 100);
+  }
+
   function renderSwap(s) {
     var swap = $("<div class='swap'></div>");
     var oldElem = $("<div class='old'></div>");
@@ -20,7 +24,7 @@
     swap.append(oldElem);
     swap.append(newElem);
     container.append(swap);
-    var pos = {top: Math.random()*HEIGHT, left: Math.random()*WIDTH};
+    var pos = {top: getPos(HEIGHT), left: getPos(WIDTH)};
     swap.css(pos);
     oldElem.animate({opacity: 0}, DURATION, "swing");
     newElem.animate({opacity: 1}, DURATION, "swing", function() {
