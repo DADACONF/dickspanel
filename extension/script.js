@@ -68,9 +68,20 @@
   });
 
   var swap = (function() {
-    var subs = ["DICK", "PRICK", "PECKER", "JIMMY", "WEINER", "COCK", "WEEWEE", "SCHLONG"];
+    var dicks = [
+      "DICK",
+      "PRICK",
+      "PECKER",
+      "JIMMY",
+      "WEINER",
+      "COCK",
+      "WEEWEE",
+      "SCHLONG",
+      "JOHNSON",
+      "LIL_GENERAL"
+    ];
     return function(oldName) {
-      var newName = subs[Math.floor(Math.random()*subs.length)];
+      var newName = dicks[Math.floor(Math.random()*dicks.length)];
       console.log("swapping", oldName, "for", newName);
       post("//dickspanel.herokuapp.com/swap", {"old": oldName, "new": newName});
       return newName;

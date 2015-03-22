@@ -7,3 +7,6 @@ Data is sent to [a real time visualizer](http://dickspanel.herokuapp.com)
 * Server code in server.js and public/
 * Chrome extension code in extension/
 * Example site with mixpanel in text/
+
+##Words for dicks
+See attached dicks.json
